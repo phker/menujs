@@ -59,10 +59,10 @@ export default {
     mouseDownListener(e) {
       let el = e.target;
       const menus = getElementsByClassName(this.$style.menu);
-      while (!menus.find(m => m === el) && el.parentElement) {
+      while (!menus.find(function (m) { return m === el; }) && el.parentElement) {
         el = el.parentElement;
       }
-      if (!menus.find(m => m === el)) {
+      if (!menus.find(function (m) { return m === el; })) {
         this.$destroy();
       }
     },
@@ -74,20 +74,20 @@ export default {
         this.$style.menu_item__unclickable
       );
       while (
-        !menus.find(m => m === el) &&
-        !menuItems.find(m => m === el) &&
+        !menus.find(function (m) { return m === el; }) &&
+        !menuItems.find(function (m) { return m === el; }) &&
         el.parentElement
       ) {
         el = el.parentElement;
       }
-      if (menuItems.find(m => m === el)) {
-        if (e.button !== 0 || unclickableMenuItems.find(m => m === el)) {
+      if (menuItems.find(function (m) { return m === el; })) {
+        if (e.button !== 0 || unclickableMenuItems.find(function (m) { return m === el; })) {
           return;
         }
         this.$destroy();
         return;
       }
-      if (!menus.find(m => m === el)) {
+      if (!menus.find(function (m) { return m === el; })) {
         this.$destroy();
       }
     },

@@ -7,7 +7,7 @@ import { COMPONENT_NAME } from "./constant";
 const ContextmenuConstructor = Vue.extend(Contextmenu);
 Vue.component(COMPONENT_NAME, Submenu);
 
-function install(Vue) {
+function install(Vue) {  
   Vue.prototype.$contextmenu = (options) => {
     let instance = new ContextmenuConstructor();
     instance.items = options.items;
@@ -26,6 +26,23 @@ function install(Vue) {
 
 if (window && window.Vue) {
   install(window.Vue)
+}
+
+if (!Array.prototype.find) {
+    //由于有些浏览器不支持array.find(),这里做一个简单的扩展
+    Array.prototype.find = Array.prototype.find || function (callback) {
+        for(var i = 0, length = this.length; i < length; i++) {
+            var item = this[i];
+            if(callback(item)) {
+                return item;
+            }
+        }
+        return null;
+    };
+    //使用方法
+    //Array.find(function (item) {
+    //    return item.a === 2;
+    //})
 }
 
 export default {

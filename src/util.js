@@ -1,3 +1,5 @@
+
+
 export function hasClass(el, className) {
   if (!className) {
     return true;
@@ -14,11 +16,12 @@ export function hasClass(el, className) {
 }
 
 export function getElementsByClassName(className) {
-  let els = [];
-  for (let el of document.getElementsByClassName(className) || []) {
-    els.push(el);
-  }
-  return els;
+    var els = [];
+    var tempels = document.getElementsByClassName(className) || [];
+    for (var i = 0; i < tempels.length; i++) {
+        els.push(tempels[i]);
+    }
+    return els;
 }
 
 export function uuid() {
